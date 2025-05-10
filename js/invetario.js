@@ -40,3 +40,32 @@ document.getElementById("formularioProducto").addEventListener("submit", functio
     // Limpiar el formulario
     document.getElementById("formularioProducto").reset();
 });
+
+// Funcionalidad para el campo de búsqueda
+function searchProducts() {
+    const input = document.getElementById('search').value.toLowerCase();  // Obtiene el valor de búsqueda en minúsculas
+    const table = document.getElementById('inventory-table');
+    const rows = table.getElementsByTagName('tr');
+
+    // Iterar sobre cada fila, comenzando desde 1 para omitir el encabezado
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        let matchFound = false;
+
+        // Comprobar si alguna celda de la fila contiene el texto de búsqueda
+        for (let j = 0; j < cells.length; j++) {
+            const cellValue = cells[j].textContent.toLowerCase();
+            if (cellValue.indexOf(input) > -1) {
+                matchFound = true;  // Si hay coincidencia, marcarlo
+                break;
+            }
+        }
+
+        // Mostrar u ocultar la fila dependiendo de si hay coincidencias
+        if (matchFound) {
+            rows[i].style.display = '';  // Mostrar fila si hay coincidencia
+        } else {
+            rows[i].style.display = 'none';  // Ocultar fila si no hay coincidencia
+        }
+    }
+}
