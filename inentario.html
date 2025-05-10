@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario Pisando Fuerte</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #1f1c2c, #928dab); /* Fondo con gradiente */
+    }
+
+    .header {
+      background: rgba(0, 0, 0, 0.6); /* Fondo oscuro translúcido */
+      padding: 5px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      border-bottom: 2px solid #fff; /* Línea debajo del header */
+    }
+
+    .header h1 {
+      margin: 0;
+      margin-left: 10px;
+      color: #fff; /* Color blanco para el título */
+    }
+
+    /* Agrandar el icono de usuario */
+    .header .user-icon {
+      font-size: 45px; /* Tamaño del icono */
+      cursor: pointer;
+    }
+
+    /* Agrupamos los botones y el icono en un contenedor flexible */
+    .header .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px; /* Separa el icono de los botones */
+    }
+
+    /* Estilo de los botones */
+    .header .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header .buttons button {
+      padding: 8px 15px;
+      border: none;  /* Elimina el borde */
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #45a049; /* Color de fondo de los botones */
+      color: white; /* Color del texto de los botones */
+    }
+
+    .header .buttons button:hover {
+      background-color: #357a38; /* Color de fondo cuando pasa el ratón */
+    }
+
+    .content {
+      padding: 20px;
+      color: white; /* Texto blanco en el contenido */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4d4b69; /* Color de fondo de los encabezados */
+      color: white; /* Texto blanco en los encabezados */
+    }
+
+    .product-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .logo-titulo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <div class="logo-titulo">
+      <img src="logo.png" alt="Logo" style="width: 50px; height: 50px; border-radius: 25px;">
+      <h1>Pisando Fuerte</h1>
+    </div>
+
+    <!-- Contenedor para los botones y el icono de usuario -->
+    <div class="header-right">
+      <div class="buttons">
+        <button>Agregar Producto</button>
+        <button>Actualizar Inventario</button>
+      </div>
+      <div class="user-icon">
+        <i class="bi bi-person-circle"></i> <!-- Icono de usuario -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content">
+    <h2>Inventario</h2>
+
+    <!-- Barra de Búsqueda -->
+    <input type="text" id="search" class="search-bar" placeholder="Buscar productos..." onkeyup="searchProducts()">
+
+    <table id="inventory-table">
+      <thead>
+        <tr>
+          <th>Cantidad</th>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Tipo de Zapato</th>
+          <th>Colores</th>
+          <th>Tallas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20</td>
+          <td><img src="shoe1.jpg" alt="Zapato 1" class="product-img"></td>
+          <td>Botas de Cuero</td>
+          <td>Hombre</td>
+          <td>Botas</td>
+          <td>Negro, Marrón</td>
+          <td>40, 41, 42</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><img src="shoe2.jpg" alt="Zapato 2" class="product-img"></td>
+          <td>Sandalias de Playa</td>
+          <td>Mujer</td>
+          <td>Sandalias</td>
+          <td>Azul, Rosa</td>
+          <td>36, 37, 38</td>
+        </tr>
+        <!-- Más filas de productos aquí -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function searchProducts() {
+      const input = document.getElementById('search').value.toLowerCase();
+      const table = document.getElementById('inventory-table');
+      const rows = table.getElementsByTagName('tr');
+
+      for (let i = 1; i < rows.length; i++) {  // Empieza desde 1 para omitir el encabezado
+        const cells = rows[i].getElementsByTagName('td');
+        let matchFound = false;
+        
+        // Comprobar cada celda de la fila
+        for (let j = 0; j < cells.length; j++) {
+          const cellValue = cells[j].textContent.toLowerCase();
+          if (cellValue.indexOf(input) > -1) {
+            matchFound = true;
+            break;
+          }
+        }
+
+        // Mostrar u ocultar fila según si coincide con la búsqueda
+        if (matchFound) {
+          rows[i].style.display = '';
+        } else {
+          rows[i].style.display = 'none';
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
