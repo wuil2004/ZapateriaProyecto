@@ -20,7 +20,6 @@
     <!-- Contenedor para los botones y el icono de usuario -->
     <div class="header-right">
       <div class="buttons">
-        <button>Agregar Producto</button>
         <button>Actualizar Inventario</button>
       </div>
       <div class="user-icon">
@@ -51,7 +50,7 @@
       <tbody>
         <tr>
           <td>20</td>
-          <td><img url="https://res.cloudinary.com/steelblue/image/fetch/e_shadow:300,co_rgb:aeaeae/e_trim:10,fl_lossy,f_auto,q_auto,f_auto,dpr_auto,w_1200,h_1200/https://steelblue.com/app/uploads/2018/10/822951_OAK_J1P2112.png" class="product-img"></td>
+          <td><img src="https://res.cloudinary.com/steelblue/image/fetch/e_shadow:300,co_rgb:aeaeae/e_trim:10,fl_lossy,f_auto,q_auto,f_auto,dpr_auto,w_1200,h_1200/https://steelblue.com/app/uploads/2018/10/822951_OAK_J1P2112.png" class="product-img"></td>
           <td>Botas de Cuero</td>
           <td>Hombre</td>
           <td>Botas</td>
@@ -60,14 +59,13 @@
         </tr>
         <tr>
           <td>15</td>
-          <td><img url="https://cdn.shopify.com/s/files/1/0582/2971/9237/products/122200003077_x8_0b93fb43-2c1b-4315-b909-557a379a6227_600x.png?v=1669423620" class="product-img"></td>
+          <td><img src="https://cdn.shopify.com/s/files/1/0582/2971/9237/products/122200003077_x8_0b93fb43-2c1b-4315-b909-557a379a6227_600x.png?v=1669423620" class="product-img"></td>
           <td>Sandalias de Playa</td>
           <td>Mujer</td>
           <td>Sandalias</td>
           <td>Azul, Rosa</td>
           <td>36, 37, 38</td>
         </tr>
-        <!-- Más filas de productos aquí -->
       </tbody>
     </table>
   </div>
@@ -82,14 +80,14 @@
     <div class="modal-content">
       <span class="close" id="cerrarModal">&times;</span>
       <h2>Nuevo producto</h2>
-      <form>
-        <input type="text" placeholder="Nombre" required>
-        <input type="number" placeholder="Precio" required>
-        <input type="number" placeholder="Stock" required>
-        <input type="text" placeholder="Stock_Max" required>
-        <input type="number" placeholder="Tallas" required>
-        <input type="text" placeholder="Color" required>
-        <textarea placeholder="Descripción" rows="3" required></textarea>
+      <form id="formularioProducto">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="imagen" placeholder="Imagen URL" required>
+        <input type="text" id="categoria" placeholder="Categoría" required>
+        <input type="number" id="cantidad" placeholder="Cantidad" required>
+        <input type="text" id="tipoZapato" placeholder="Tipo de zapato" required>
+        <input type="text" id="tallas" placeholder="Tallas" required>
+        <input type="text" id="colores" placeholder="Colores" required>
         <button type="submit">Enviar</button>
       </form>
     </div>
