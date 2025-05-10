@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/Formulario_cliente.css">
+</head>
+<body>
+
+  <!-- Botón flotante -->
+  <button id="abrirForm">
+    <i class="bi bi-person-lines-fill"></i> <!-- Icono de persona -->
+  </button>
+
+  <!-- Modal con formulario -->
+  <div id="miModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="cerrarModal">&times;</span>
+      
+      <!-- Contenedor para título y logo -->
+      <div class="titulo-logo">
+        <img src="/logo.png" alt="Logo" class="logo">
+        <h2>Datos-Clientes</h2>
+      </div>
+      
+      <form>
+        <label for="nombreCliente">
+          <i class="bi bi-person"></i> Nombre Cliente
+        </label>
+        <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
+
+        <label for="numeroCelular">
+          <i class="bi bi-whatsapp"></i> Número celular
+        </label>
+        <input type="number" id="numeroCelular" placeholder="Número celular" required>
+
+        <label for="correoElectronico">
+          <i class="bi bi-envelope-at"></i> Correo electrónico
+        </label>
+        <input type="email" id="correoElectronico" placeholder="Correo electrónico" required>
+
+        <button type="submit">Listo</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/Formulario_cliente.js"></script>
+
+</body>
+</html>
