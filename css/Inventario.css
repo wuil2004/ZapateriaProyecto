@@ -1,0 +1,226 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #1f1c2c, #928dab);
+    /* Fondo con gradiente */
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.6);
+    /* Fondo oscuro translúcido */
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    border-bottom: 2px solid #fff;
+    /* Línea debajo del header */
+}
+
+.header h1 {
+    margin: 0;
+    margin-left: 10px;
+    color: #fff;
+    /* Color blanco para el título */
+}
+
+/* Agrandar el icono de usuario */
+.header .user-icon {
+    font-size: 45px;
+    /* Tamaño del icono */
+    cursor: pointer;
+}
+
+/* Agrupamos los botones y el icono en un contenedor flexible */
+.header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Separa el icono de los botones */
+}
+
+/* Estilo de los botones */
+.header .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header .buttons button {
+    padding: 8px 15px;
+    border: none;
+    /* Elimina el borde */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #45a049;
+    /* Color de fondo de los botones */
+    color: white;
+    /* Color del texto de los botones */
+}
+
+.header .buttons button:hover {
+    background-color: #357a38;
+    /* Color de fondo cuando pasa el ratón */
+}
+
+.content {
+    padding: 20px;
+    color: white;
+    /* Texto blanco en el contenido */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4d4b69;
+    /* Color de fondo de los encabezados */
+    color: white;
+    /* Texto blanco en los encabezados */
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Botón flotante estilo moderno */
+#abrirModal {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: 34px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+    z-index: 999;
+}
+
+#abrirModal:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 3% auto;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: white;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ff6b6b;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: 0.2s ease-in-out;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus,
+textarea:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #00a383;
+}
