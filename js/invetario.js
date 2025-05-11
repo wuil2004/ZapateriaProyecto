@@ -41,14 +41,48 @@ document.getElementById("formularioProducto").addEventListener("submit", functio
     document.getElementById("formularioProducto").reset();
 });
 
-// Funcionalidad para el campo de búsqueda
-function searchProducts() {
-    const input = document.getElementById('search').value.toLowerCase();  // Obtiene el valor de búsqueda en minúsculas
+// Funcionalidad para los filtros
+function filterProducts() {
+    const categoria = document.getElementById('categoria-filter').value.toLowerCase();
+    const tipoZapato = document.getElementById('tipoZapato-filter').value.toLowerCase();
+    const colores = document.getElementById('colores-filter').value.toLowerCase();
+    const tallas = document.getElementById('tallas-filter').value.toLowerCase();
+    
     const table = document.getElementById('inventory-table');
     const rows = table.getElementsByTagName('tr');
 
-    // Iterar sobre cada fila, comenzando desde 1 para omitir el encabezado
-    for (let i = 1; i < rows.length; i++) {
+    // Iterar sobre cada fila
+    for (let i = 1; i < rows.length; i++) { // Comienza desde 1 para omitir el encabezado
+        const cells = rows[i].getElementsByTagName('td');
+        
+        const categoriaCell = cells[3].textContent.toLowerCase();
+        const tipoZapatoCell = cells[4].textContent.toLowerCase();
+        const coloresCell = cells[5].textContent.toLowerCase();
+        const tallasCell = cells[6].textContent.toLowerCase();
+
+        // Comprobar si los filtros aplicados coinciden con los datos de la fila
+        const isCategoriaMatch = categoria ? categoriaCell.indexOf(categoria) > -1 : true;
+        const isTipoZapatoMatch = tipoZapato ? tipoZapatoCell.indexOf(tipoZapato) > -1 : true;
+        const isColoresMatch = colores ? coloresCell.indexOf(colores) > -1 : true;
+        const isTallasMatch = tallas ? tallasCell.indexOf(tallas) > -1 : true;
+
+        // Mostrar u ocultar la fila según si cumple con los filtros
+        if (isCategoriaMatch && isTipoZapatoMatch && isColoresMatch && isTallasMatch) {
+            rows[i].style.display = '';
+        } else {
+            rows[i].style.display = 'none';
+        }
+    }
+}
+
+// Funcionalidad de búsqueda
+function searchProducts() {
+    const input = document.getElementById('search').value.toLowerCase();
+    const table = document.getElementById('inventory-table');
+    const rows = table.getElementsByTagName('tr');
+
+    // Iterar sobre cada fila
+    for (let i = 1; i < rows.length; i++) {  // Comienza en 1 para omitir la fila de encabezado
         const cells = rows[i].getElementsByTagName('td');
         let matchFound = false;
 
