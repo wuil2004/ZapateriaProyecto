@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/carrito.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/Formulario_cliente.css">
+  <title>Carrito de Compras</title>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo de Tienda Dimaem" />
+    </div>
+    <nav>
+      <a href="index.html">Ir a Productos</a>
+      <a href="carrito.html">
+        Carrito 🛒 (<span id="cart-count">0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+  <main>
+    <h1>Carrito de Compras</h1>
+
+    <!-- Lista de productos en el carrito -->
+    <div id="cart-items" class="cart-items">
+      <!-- Aquí se insertan los items dinámicamente -->
+    </div>
+
+    <!-- Total del carrito -->
+    <div id="cart-total" class="cart-summary">
+      <h2>Total: $<span id="total-price">0</span></h2>
+    </div>
+
+    <!-- Botón de confirmación -->
+    <div style="text-align:center; margin-top: 20px;">
+      <button id="checkout-btn">Confirmar Compra</button>
+    </div>
+  </main>
+
+  <!-- ========== MODAL DE EDICIÓN ========== -->
+  <div id="edit-modal"
+       style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+              background:#fff; padding:20px; border:1px solid #ccc;
+              box-shadow: 0px 0px 10px rgba(0,0,0,0.2); z-index:1000;">
+    <h3>Editar Producto</h3>
+
+    <!-- Selector de talla -->
+    <label for="edit-size">Talla:</label>
+    <select id="edit-size">
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+    </select>
+    <br><br>
+
+    <!-- Selector de color -->
+    <label for="edit-color">Color:</label>
+    <select id="edit-color">
+      <option value="Rojo">Rojo</option>
+      <option value="Azul">Azul</option>
+      <option value="Verde">Verde</option>
+    </select>
+    <br><br>
+
+    <!-- Botones del modal -->
+    <button onclick="saveProductEdit()">Guardar</button>
+    <button onclick="closeEditModal()">Cancelar</button>
+  </div>
+
+  <!-- ========== SCRIPT ========== -->
+  <script src="/js/carrito.js"></script>
+
+
+   <!-- Botón flotante -->
+  <button id="abrirForm">
+    <i class="bi bi-person-lines-fill"></i> <!-- Icono de persona -->
+  </button>
+
+  <!-- Modal con formulario -->
+  <div id="miModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="cerrarModal">&times;</span>
+      
+      <!-- Contenedor para título y logo -->
+      <div class="titulo-logo">
+        <img src="/logo.png" alt="Logo" class="logo">
+        <h2>Datos-Clientes</h2>
+      </div>
+      
+      <form>
+        <label for="nombreCliente">
+          <i class="bi bi-person"></i> Nombre Cliente
+        </label>
+        <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
+
+        <label for="numeroCelular">
+          <i class="bi bi-whatsapp"></i> Número celular
+        </label>
+        <input type="number" id="numeroCelular" placeholder="Número celular" required>
+
+        <label for="correoElectronico">
+          <i class="bi bi-envelope-at"></i> Correo electrónico
+        </label>
+        <input type="email" id="correoElectronico" placeholder="Correo electrónico" required>
+
+        <button type="submit">Listo</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/Formulario_cliente.js"></script>
+</body>
+</html>
