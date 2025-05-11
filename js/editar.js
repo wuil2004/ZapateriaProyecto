@@ -1,66 +1,12 @@
-const abrir = document.getElementById("abrirModal");
-const modal = document.getElementById("miModal");
-const cerrar = document.getElementById("cerrarModal");
-
-// Modal de editar
-const modalEditar = document.getElementById("editModal");
-const cerrarEditar = document.getElementById("closeEditModal");
-
-abrir.onclick = () => modal.style.display = "block";
-cerrar.onclick = () => modal.style.display = "none";
-window.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
-};
-
-// Evento para agregar el producto al inventario
-document.getElementById("formularioProducto").addEventListener("submit", function (e) {
-    e.preventDefault();  // Evita que el formulario recargue la página
-
-    // Obtén los valores del formulario
-    const nombre = document.getElementById("nombre").value;
-    const imagen = document.getElementById("imagen").value;
-    const categoria = document.getElementById("categoria").value;
-    const cantidad = document.getElementById("cantidad").value;
-    const tipoZapato = document.getElementById("tipoZapato").value;
-    const tallas = document.getElementById("tallas").value;
-    const colores = document.getElementById("colores").value;
-
-    // Crear una nueva fila en la tabla
-    const tabla = document.getElementById("inventory-table").getElementsByTagName('tbody')[0];
-    const nuevaFila = tabla.insertRow();
-
-    // Insertar celdas con los valores obtenidos
-    nuevaFila.insertCell(0).textContent = cantidad;  // Cantidad
-    nuevaFila.insertCell(1).innerHTML = `<img src="${imagen}" class="product-img">`;  // Imagen
-    nuevaFila.insertCell(2).textContent = nombre;  // Nombre
-    nuevaFila.insertCell(3).textContent = categoria;  // Categoría
-    nuevaFila.insertCell(4).textContent = tipoZapato;  // Tipo de zapato
-    nuevaFila.insertCell(5).textContent = colores;  // Colores
-    nuevaFila.insertCell(6).textContent = tallas;  // Tallas
-
-    // Crear la celda de acciones y agregar el botón de editar
-    const accionesCelda = nuevaFila.insertCell(7);
-    const botonEditar = document.createElement("button");
-    botonEditar.classList.add("edit-btn");
-    botonEditar.textContent = "Editar";
-    botonEditar.setAttribute("data-id", tabla.rows.length);  // Usar el número de filas como ID
-    botonEditar.onclick = function() {
-      editProduct(botonEditar);  // Llamar la función editProduct al hacer clic
-    };
-    accionesCelda.appendChild(botonEditar);  // Agregar el botón a la celda
-
-    // Cerrar el modal después de agregar el producto
-    modal.style.display = "none";
-
-    // Limpiar el formulario
-    document.getElementById("formularioProducto").reset();
-});
-
 // Mostrar el modal de edición y cargar datos
 function editProduct(button) {
+  // Obtener el ID del producto desde el atributo data-id del botón
   const productId = button.getAttribute('data-id');
-  const productRow = document.getElementById('product' + productId);
+  
+  // Obtener los datos del producto (aquí estamos usando el ID de producto)
+  const productRow = document.getElementById('product' + productId); // Aquí accedemos a la fila específica por el ID del producto
 
+  // Llenar el formulario con los datos del producto
   document.getElementById('editNombre').value = productRow.cells[2].textContent;
   document.getElementById('editImagen').value = productRow.cells[1].getElementsByTagName('img')[0].src;
   document.getElementById('editCategoria').value = productRow.cells[3].textContent;
@@ -69,15 +15,26 @@ function editProduct(button) {
   document.getElementById('editTallas').value = productRow.cells[6].textContent;
   document.getElementById('editColores').value = productRow.cells[5].textContent;
 
+  // Abrir el modal de edición
   document.getElementById('editModal').style.display = 'block';
+
+  // Guardar el ID del producto en un atributo del formulario para usarlo después
   document.getElementById('editForm').setAttribute('data-id', productId);
 }
 
+// Cerrar el modal de edición
+document.getElementById('closeEditModal').onclick = function() {
+  document.getElementById('editModal').style.display = 'none';
+};
+
 // Guardar los cambios y actualizar la tabla
 document.getElementById('editForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+  e.preventDefault(); // Evitar que el formulario recargue la página
+
+  // Obtener el ID del producto desde el atributo data-id del formulario
   const productId = document.getElementById('editForm').getAttribute('data-id');
 
+  // Obtener los valores del formulario
   const nombre = document.getElementById('editNombre').value;
   const imagen = document.getElementById('editImagen').value;
   const categoria = document.getElementById('editCategoria').value;
@@ -86,18 +43,19 @@ document.getElementById('editForm').addEventListener('submit', function(e) {
   const tallas = document.getElementById('editTallas').value;
   const colores = document.getElementById('editColores').value;
 
-  const productRow = document.getElementById('product' + productId);
-  productRow.cells[2].textContent = nombre;
-  productRow.cells[1].getElementsByTagName('img')[0].src = imagen;
-  productRow.cells[3].textContent = categoria;
-  productRow.cells[0].textContent = cantidad;
-  productRow.cells[4].textContent = tipoZapato;
-  productRow.cells[5].textContent = colores;
-  productRow.cells[6].textContent = tallas;
+  // Actualizar la fila de la tabla con los nuevos valores
+  const productRow = document.getElementById('product' + productId); // Aquí accedemos a la fila específica por el ID del producto
+  productRow.cells[2].textContent = nombre;  // Nombre
+  productRow.cells[1].getElementsByTagName('img')[0].src = imagen;  // Imagen
+  productRow.cells[3].textContent = categoria;  // Categoría
+  productRow.cells[0].textContent = cantidad;  // Cantidad
+  productRow.cells[4].textContent = tipoZapato;  // Tipo de zapato
+  productRow.cells[5].textContent = colores;  // Colores
+  productRow.cells[6].textContent = tallas;  // Tallas
 
+  // Cerrar el modal después de guardar los cambios
   document.getElementById('editModal').style.display = 'none';
 });
-
 
 // Función de búsqueda de productos
 function searchProducts() {
